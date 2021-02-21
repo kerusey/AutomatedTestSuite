@@ -1,2 +1,2 @@
 # AutomatedTestSuite
- Python project that aims on automated capturing information of system
+ Python project that aims on the automated capturing information of system

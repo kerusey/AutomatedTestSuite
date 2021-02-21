@@ -1,0 +1,10 @@
+# Default ignored files
+/shelf/
+/workspace.xml
+# CodeStream ignored files
+/../../AutomatedTestSuite\.idea/codestream.xml
+# Datasource local storage ignored files
+/../../../../../../../:\Users\kerusey\Documents\GitHub\AutomatedTestSuite\.idea/dataSources/
+/dataSources.local.xml
+# Editor-based HTTP Client requests
+/httpRequests/

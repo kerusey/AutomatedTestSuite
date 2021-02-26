@@ -13,14 +13,13 @@ PyMsgBox==1.0.9
 pyperclip==1.8.2
 PyRect==0.1.4
 PyScreeze==0.1.26
+pyTelegramBotAPI==3.7.6
 python-telegram-bot==13.3
 PyTweening==1.0.3
 pytz==2021.1
 requests==2.25.1
 six==1.15.0
 speedtest-cli==2.1.2
-telebot==0.0.4
-telegram==0.0.1
 tornado==6.1
 tzlocal==2.1
 urllib3==1.26.3

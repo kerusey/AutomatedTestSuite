@@ -15,7 +15,7 @@ def getUserInfo():
             "username": getuser(),
             "ip": socket.gethostbyname(socket.getfqdn()),
             "mac": getnode(),
-            "timezone": datetime.fromtimestamp(boot_time()),
+            "timezone": datetime.fromtimestamp(boot_time()).strftime("%d/%m/%Y, %H:%M:%S"),
             "os": osInfo.system,
             "nodeName": osInfo.node,
             "osRelease": osInfo.release,

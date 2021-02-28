@@ -2,7 +2,7 @@ from datetime import datetime
 import telebot
 import json
 from itertools import chain
-from Tests import NetworkSpeedTest, Screenshot, UserInfoTest
+from Tests import Networking, Screenshot, UserInfoTest
 import time
 import threading
 from os import remove
@@ -40,7 +40,7 @@ def testRunner(beginTimer):
     
     client = UserInfoTest.getUserInfo()
     botTasks['Get user data'] = 'x'
-    network = NetworkSpeedTest.calculate()
+    network = Networking.calculateNetworkSpeedTest()
     botTasks['Test network speed'] = 'x'
     
     results = {

@@ -35,7 +35,7 @@ def requestDomainInformation(host: str) -> dict:
 
 if __name__ == '__main__':
     api = shodan.Shodan(json.load(open("../config.json"))['shodanKey'])
-    open("dumps.json", 'w').write(json.dumps(requestDomainInformation("host here"), indent=4))
+    #  open("dumps.json", 'w').write(json.dumps(requestDomainInformation("host here"), indent=4))
 
 else:
     api = shodan.Shodan(json.load(open("config.json"))['shodanKey'])

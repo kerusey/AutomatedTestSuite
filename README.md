@@ -5,6 +5,7 @@
 ```json
 {
   "token": "telegram bot token",
+  "shodanKey": "Shodan Api token",
   "userSession": 999999,
   "proxy": {
     "type": "https",

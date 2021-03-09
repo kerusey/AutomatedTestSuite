@@ -1,11 +1,9 @@
 from getpass import getuser
-import socket
 from uuid import getnode
 from platform import uname
 from psutil import boot_time
 from datetime import datetime
-
-# getting user information
+from requests import get
 
 
 def getUserInfo():
@@ -13,7 +11,7 @@ def getUserInfo():
     return \
         {
             "username": getuser(),
-            "ip": socket.gethostbyname(socket.getfqdn()),
+            "ip": get("https://api.ipify.org").text,
             "mac": getnode(),
             "timezone": datetime.fromtimestamp(boot_time()).strftime("%d/%m/%Y, %H:%M:%S"),
             "os": osInfo.system,
@@ -25,5 +23,5 @@ def getUserInfo():
         }
 
 
-
-
+if __name__ == '__main__':
+    print(getUserInfo())
